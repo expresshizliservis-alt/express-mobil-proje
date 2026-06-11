@@ -1,0 +1,38 @@
+{
+  "name": "techfix-repair-website",
+  "version": "1.0.0",
+  "description": "Professional phone and computer repair service website with Next.js, Tailwind CSS, and modern UI components",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,css,md}\""
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "lucide-react": "^0.408.0",
+    "tailwindcss": "^3.4.0",
+    "nodemailer": "^6.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "@types/nodemailer": "^6.4.0",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.16",
+    "prettier": "^3.1.0",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^15.0.0"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
