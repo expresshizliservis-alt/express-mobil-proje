@@ -6,7 +6,9 @@ interface GalleryItem {
   id: number;
   title: string;
   category: string;
-  imageUrl: string;
+  imageUrl?: string;
+  videoUrl?: string; // Video desteği eklendi
+  type: "image" | "video"; // Dosya türünü belirlemek için
 }
 
 export default function Gallery() {
@@ -14,20 +16,24 @@ export default function Gallery() {
     {
       id: 1,
       title: "Express Mobil Teknik Servis",
-      category: "Bilgisayar Tamiri",
+      category: "Kurumsal",
       imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/f_auto,q_auto/1000454471_v8abfe",
+      type: "image",
     },
     {
       id: 2,
-      title: "Ekran Değişimi Öncesi Test",
-      category: "Telefon Tamiri",
-      imageUrl: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&q=80&w=600", 
+      title: "Mikroskop Altında Hassas Anakart Tamiri",
+      category: "Video / Canlı Tamir",
+      // BURAYA CLOUDINARY'DEN ALDIĞIN MP4 VİDEO LİNKİNİ YAPIŞTIRACAKSIN:
+      videoUrl: "https://res.cloudinary.com/dtsotmmun/video/upload/v12345678/ornek_video.mp4", 
+      type: "video",
     },
     {
       id: 3,
-      title: "Dükkan İçi Görünüm",
-      category: "Express Mobile",
-      imageUrl: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80&w=600",
+      title: "Ekran Değişimi ve Test Aşaması",
+      category: "Telefon Tamiri",
+      imageUrl: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&q=80&w=600", 
+      type: "image",
     }
   ];
 
@@ -39,10 +45,10 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold text-white sm:text-5xl tracking-tight">
-            Dükkandan <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Kareler</span>
+            Dükkandan <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Kareler & Videolar</span>
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
-            Telefon ve bilgisayar tamir süreçlerimiz, teknik servisimiz ve dükkanımızdan anlık fotoğraflar.
+            Teknik servis süreçlerimiz, dükkanımız ve ustalarımızın tamir anlarından canlı görüntüler.
           </p>
         </div>
 
@@ -53,12 +59,26 @@ export default function Gallery() {
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]"
             >
               <div className="aspect-video w-full overflow-hidden bg-slate-800 relative">
-                <img
-                  src={photo.imageUrl}
-                  alt={photo.title}
-                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+                {photo.type === "video" ? (
+                  /* Video Oynatıcı: Otomatik oynar, sesi kapalıdır, döngüseldir */
+                  <video
+                    src={photo.videoUrl}
+                    poster={photo.imageUrl} // Video yüklenene kadar görünecek opsiyonel kapak resmi
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  /* Normal Fotoğraf */
+                  <img
+                    src={photo.imageUrl}
+                    alt={photo.title}
+                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80 pointer-events-none" />
               </div>
               
               <div className="p-6 relative">
