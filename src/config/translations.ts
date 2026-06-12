@@ -5,7 +5,7 @@ export const translations = {
   tr: {
     // Header
     header: {
-      logo: "Express Mobil",
+      logo: "Express mobil",
       phone: "Telefon Tamir",
       computer: "Bilgisayar Tamir",
       contact: "İletişim",
@@ -13,18 +13,20 @@ export const translations = {
     // Hero Section
     hero: {
       title: "Teknoloji Sorunlarınız İçin Güvenilir Çözüm",
-      subtitle: "Hızlı, profesyonel ve güvenilir telefon ve bilgisayar tamir hizmetleri",
+      subtitle: "Hızlı, garantili ve güvenilir telefon ve bilgisayar tamir hizmetleri",
       cta: "Hemen İletişime Geçin",
-      badge: "7/24 Hizmetinde",
+      badge: "7/24 Hizmetinizde",
     },
     // Services Section
     services: {
       title: "Hizmetlerimiz",
-      subtitle: "Profesyonel teknoloji tamir hizmetleri",
+      subtitle: "Garantili teknoloji tamir hizmetleri",
+      detailsBtn: "Detaylı Bilgi",
+      viewAllBtn: "Tüm Hizmetleri Görüntüle",
       items: [
         {
           title: "Telefon Onarımı",
-          description: "Ekran, batarya, kamera ve yazılım sorunlarının profesyonel çözümü",
+          description: "Ekran, batarya, kamera ve yazılım sorunlarına uzman müdahale",
           icon: "smartphone",
         },
         {
@@ -38,7 +40,7 @@ export const translations = {
           icon: "hard-drive",
         },
         {
-          title: "Açılı Montaj",
+          title: "Sistem Kurulumu",
           description: "Bilgisayar bileşen kurulumu ve sistem konfigürasyonu",
           icon: "wrench",
         },
@@ -74,7 +76,7 @@ export const translations = {
   en: {
     // Header
     header: {
-      logo: "Express Mobil",
+      logo: "Express mobil",
       phone: "Phone Repair",
       computer: "Computer Repair",
       contact: "Contact",
@@ -82,18 +84,20 @@ export const translations = {
     // Hero Section
     hero: {
       title: "Reliable Solutions for Your Tech Problems",
-      subtitle: "Fast, professional and trustworthy phone and computer repair services",
+      subtitle: "Fast, expert and trustworthy phone and computer repair services",
       cta: "Get in Touch Now",
       badge: "24/7 Service",
     },
     // Services Section
     services: {
       title: "Our Services",
-      subtitle: "Professional technology repair services",
+      subtitle: "Expert technology repair services",
+      detailsBtn: "Details",
+      viewAllBtn: "View All Services",
       items: [
         {
           title: "Phone Repair",
-          description: "Professional solutions for screen, battery, camera and software issues",
+          description: "Expert solutions for screen, battery, camera and software issues",
           icon: "smartphone",
         },
         {
@@ -107,7 +111,7 @@ export const translations = {
           icon: "hard-drive",
         },
         {
-          title: "Hardware Assembly",
+          title: "System Setup",
           description: "Computer component installation and system configuration",
           icon: "wrench",
         },
@@ -143,7 +147,7 @@ export const translations = {
   ar: {
     // Header
     header: {
-      logo: "Express Mobil",
+      logo: "Express mobil",
       phone: "إصلاح الهواتف",
       computer: "إصلاح الحواسيب",
       contact: "اتصل بنا",
@@ -151,18 +155,20 @@ export const translations = {
     // Hero Section
     hero: {
       title: "حلول موثوقة لمشاكل التكنولوجيا لديك",
-      subtitle: "خدمات إصلاح الهواتف والحواسيب سريعة واحترافية وموثوقة",
+      subtitle: "خدمات إصلاح الهواتف والحواسيب سريعة ومضمونة وموثوقة",
       cta: "تواصل معنا الآن",
       badge: "خدمة 24/7",
     },
     // Services Section
     services: {
       title: "خدماتنا",
-      subtitle: "خدمات إصلاح التكنولوجيا الاحترافية",
+      subtitle: "خدمات إصلاح التكنولوجيا المضمونة",
+      detailsBtn: "تفاصيل أكثر",
+      viewAllBtn: "عرض كل الخدمات",
       items: [
         {
           title: "إصلاح الهواتف",
-          description: "حلول احترافية لمشاكل الشاشة والبطارية والكاميرا والبرامج",
+          description: "حلول مضمونة لمشاكل الشاشة والبطارية والكاميرا والبرامج",
           icon: "smartphone",
         },
         {
