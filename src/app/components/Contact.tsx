@@ -27,6 +27,26 @@ export default function Contact({ translations }: ContactProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Dilin ne olduğunu buton yazısından otomatik algılıyoruz
+  const isEn = translations.contact.form.submit === "Send";
+  const isAr = translations.contact.form.submit === "إرسال";
+
+  // Kodun içine sabit yazılmış Türkçe kelimelerin dinamik çevirileri
+  const t = {
+    emailLabel: isEn ? "Email" : isAr ? "البريد الإلكتروني" : "E-posta",
+    addressLabel: isEn ? "Address" : isAr ? "العنوان" : "Adres",
+    hoursLabel: isEn ? "Working Hours" : isAr ? "ساعات العمل" : "Çalışma Saatleri",
+    namePlaceholder: isEn ? "John Doe" : isAr ? "فلان الفلاني" : "Ahmet Yılmaz",
+    emailPlaceholder: isEn ? "john@example.com" : isAr ? "name@example.com" : "ornek@mail.com",
+    messagePlaceholder: isEn ? "Write your message here..." : isAr ? "اكتب رسالتك هنا..." : "Mesajınızı buraya yazın...",
+    sending: isEn ? "Sending..." : isAr ? "جاري الإرسال..." : "Gönderiliyor...",
+    privacy: isEn 
+      ? "Your data is stored securely. We do not spam." 
+      : isAr 
+        ? "يتم تخزين بياناتك بأمان. نحن لا نرسل بريد مزعج." 
+        : "Verileriniz güvenli bir şekilde saklanır. Spam göndermeyiz.",
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -95,19 +115,19 @@ export default function Contact({ translations }: ContactProps) {
     },
     {
       icon: <Mail className="w-6 h-6" />,
-      label: "E-posta",
+      label: t.emailLabel,
       value: translations.contact.info.email,
       href: `mailto:${translations.contact.info.email}`,
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      label: "Adres",
+      label: t.addressLabel,
       value: translations.contact.info.address,
       href: "#",
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      label: "Çalışma Saatleri",
+      label: t.hoursLabel,
       value: translations.contact.info.hours,
       href: "#",
     },
@@ -179,7 +199,7 @@ export default function Contact({ translations }: ContactProps) {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue-400/50 focus:bg-white/20 transition-all duration-300"
-                  placeholder="John Doe"
+                  placeholder={t.namePlaceholder}
                 />
               </div>
 
@@ -195,7 +215,7 @@ export default function Contact({ translations }: ContactProps) {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue-400/50 focus:bg-white/20 transition-all duration-300"
-                  placeholder="john@example.com"
+                  placeholder={t.emailPlaceholder}
                 />
               </div>
 
@@ -210,7 +230,7 @@ export default function Contact({ translations }: ContactProps) {
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue-400/50 focus:bg-white/20 transition-all duration-300"
-                  placeholder="+90 312 123 4567"
+                  placeholder="+90 5XX XXX XX XX"
                 />
               </div>
 
@@ -226,7 +246,7 @@ export default function Contact({ translations }: ContactProps) {
                   required
                   rows={4}
                   className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue-400/50 focus:bg-white/20 transition-all duration-300 resize-none"
-                  placeholder="Mesajınızı buraya yazın..."
+                  placeholder={t.messagePlaceholder}
                 />
               </div>
 
@@ -245,7 +265,7 @@ export default function Contact({ translations }: ContactProps) {
                     </>
                   ) : (
                     <>
-                      {isLoading ? "Gönderiliyor..." : translations.contact.form.submit}
+                      {isLoading ? t.sending : translations.contact.form.submit}
                       {!isLoading && <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                     </>
                   )}
@@ -255,7 +275,7 @@ export default function Contact({ translations }: ContactProps) {
 
             {/* Privacy Notice */}
             <p className="text-white/50 text-xs text-center">
-              Verileriniz güvenli bir şekilde saklanır. Spam göndermeyiz.
+              {t.privacy}
             </p>
           </div>
         </div>
