@@ -7,30 +7,30 @@ interface GalleryItem {
   title: string;
   category: string;
   imageUrl?: string;
-  videoUrl?: string; // Video desteği eklendi
-  type: "image" | "video"; // Dosya türünü belirlemek için
+  videoUrl?: string;
+  type: "image" | "video";
 }
 
 export default function Gallery() {
   const photos: GalleryItem[] = [
     {
       id: 1,
-      title: "Express Mobil Teknik Servis",
+      title: "Express Mobil Kurumsal Logomuz",
       category: "Kurumsal",
       imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/f_auto,q_auto/1000454471_v8abfe",
       type: "image",
     },
     {
       id: 2,
-      title: "Mikroskop Altında Hassas Anakart Tamiri",
-      category: "Video / Canlı Tamir",
-      // BURAYA CLOUDINARY'DEN ALDIĞIN MP4 VİDEO LİNKİNİ YAPIŞTIRACAKSIN:
-      videoUrl: "https://res.cloudinary.com/dtsotmmun/video/upload/v12345678/ornek_video.mp4", 
+      title: "Teknik Servis Canlı Tamir Aşaması", // Videonun altındaki yazı
+      category: "Canlı Tamir / Video", // Üstteki küçük mavi etiket
+      // İŞTE SENİN CLOUDINARY VİDEO LİNKİN BURASI:
+      videoUrl: "https://res.cloudinary.com/dtsotmmun/video/upload/f_auto,q_auto/VID_20260612_002844_863_jgktb3.mp4", 
       type: "video",
     },
     {
       id: 3,
-      title: "Ekran Değişimi ve Test Aşaması",
+      title: "Ekran Değişimi ve Test Süreci",
       category: "Telefon Tamiri",
       imageUrl: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&q=80&w=600", 
       type: "image",
@@ -48,7 +48,7 @@ export default function Gallery() {
             Dükkandan <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Kareler & Videolar</span>
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
-            Teknik servis süreçlerimiz, dükkanımız ve ustalarımızın tamir anlarından canlı görüntüler.
+            Telefon ve bilgisayar tamir süreçlerimiz, teknik servisimiz ve dükkanımızdan canlı görüntüler.
           </p>
         </div>
 
@@ -60,18 +60,16 @@ export default function Gallery() {
             >
               <div className="aspect-video w-full overflow-hidden bg-slate-800 relative">
                 {photo.type === "video" ? (
-                  /* Video Oynatıcı: Otomatik oynar, sesi kapalıdır, döngüseldir */
                   <video
                     src={photo.videoUrl}
-                    poster={photo.imageUrl} // Video yüklenene kadar görünecek opsiyonel kapak resmi
                     className="h-full w-full object-cover"
                     autoPlay
                     muted
                     loop
                     playsInline
+                    controls // İstersen müşteri videoyu durdurup oynatabilsin diye kontrol paneli ekledim
                   />
                 ) : (
-                  /* Normal Fotoğraf */
                   <img
                     src={photo.imageUrl}
                     alt={photo.title}
