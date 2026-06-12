@@ -81,14 +81,14 @@ export default function Contact({ translations }: ContactProps) {
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
-      label: "Telefon 1",
+      label: "MUHAMMED",
       value: translations.contact.info.phone,
       href: getWhatsAppLink(translations.contact.info.phone),
       isWhatsApp: true,
     },
     {
       icon: <Phone className="w-6 h-6" />,
-      label: "Telefon 2",
+      label: "ZEKERİYA",
       value: translations.contact.info.phone2,
       href: getWhatsAppLink(translations.contact.info.phone2),
       isWhatsApp: true,
