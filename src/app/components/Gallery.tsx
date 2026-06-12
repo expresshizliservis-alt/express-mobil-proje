@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -11,15 +10,13 @@ interface GalleryItem {
 }
 
 export default function Gallery() {
-  // İLERİDE YENİ FOTOĞRAF EKLEMEK İÇİN SADECE BU LİSTEYE YENİ SATIR EKLEMEN YETERLİ!
-  const photos: GalleryItem = [
+  const photos: GalleryItem[] = [
     {
       id: 1,
       title: "Müşteri Cihazı Tamir Aşaması",
       category: "Bilgisayar Tamiri",
-      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/f_auto,q_auto/1000454471_v8abfe", // Senin yüklediğin ilk fotoğraf
+      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/f_auto,q_auto/1000454471_v8abfe",
     },
-    // İleride 2., 3. fotoğrafları Cloudinary'e yükleyince aşağıdaki örnekler gibi linklerini değiştirebilirsin:
     {
       id: 2,
       title: "Ekran Değişimi Öncesi Test",
@@ -36,7 +33,6 @@ export default function Gallery() {
 
   return (
     <section id="galeri" className="py-20 relative overflow-hidden bg-slate-900">
-      {/* Arka plan modern neon ışık efektleri */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -50,7 +46,6 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Modern Glassmorphism Fotoğraf Izgarası (Grid) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {photos.map((photo) => (
             <div 
@@ -58,7 +53,6 @@ export default function Gallery() {
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]"
             >
               <div className="aspect-video w-full overflow-hidden bg-slate-800 relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photo.imageUrl}
                   alt={photo.title}
