@@ -61,7 +61,7 @@ export const translations = {
         phone2: "05019390627",
         email: "expresshizliservis@gmail.com",
         address: "Gaziantep, Türkiye",
-        hours: "Pzt-Cum: 09:00 - 19:00 | Cmt: 10:00 - 18:00",
+        hours: "Hafta içi her gün",
       },
     },
     // Footer
