@@ -2,8 +2,15 @@
 "use client";
 
 import React from "react";
-import { Facebook, Twitter, Instagram, Linkedin, Smartphone } from "lucide-react";
+import { Facebook, Twitter, Instagram, Smartphone } from "lucide-react";
 import { TranslationKey } from "@/config/translations";
+
+// TikTok SVG İkonu
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
 
 interface FooterProps {
   translations: TranslationKey;
@@ -12,11 +19,12 @@ interface FooterProps {
 export default function Footer({ translations }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
+  // SENİN SOSYAL MEDYA LİNKLERİN BURADA
   const socialLinks = [
-    { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
-    { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
-    { icon: <Instagram className="w-5 h-5" />, href: "#", label: "Instagram" },
-    { icon: <Linkedin className="w-5 h-5" />, href: "#", label: "LinkedIn" },
+    { icon: <Facebook className="w-5 h-5" />, href: "https://www.facebook.com/share/1GbEtasAsc/", label: "Facebook" },
+    { icon: <Twitter className="w-5 h-5" />, href: "https://x.com/Expressmobil___", label: "Twitter" },
+    { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/ekspresteknoservis", label: "Instagram" },
+    { icon: <TikTokIcon className="w-5 h-5" />, href: "https://www.tiktok.com/@express.mobil5", label: "TikTok" },
   ];
 
   const quickLinks = [
@@ -42,10 +50,10 @@ export default function Footer({ translations }: FooterProps) {
           <div className="space-y-4 md:col-span-1">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg">
-                <img src="/logo.png" alt="Express Mobil" className="w-10 h-10 object-contain" />
+                <img src="/logo.png" alt="Express mobil" className="w-10 h-10 object-contain" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
-                Express Mobil
+                Express mobil
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
@@ -57,6 +65,8 @@ export default function Footer({ translations }: FooterProps) {
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="p-2 rounded-lg bg-white/10 hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 text-gray-400 hover:text-white transition-all duration-300 hover:shadow-lg"
                 >
@@ -129,7 +139,7 @@ export default function Footer({ translations }: FooterProps) {
         {/* Bottom Footer */}
         <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm">
-            &copy; {currentYear} Express Mobil. Tüm hakları saklıdır.
+            &copy; {currentYear} Express mobil. Tüm hakları saklıdır.
           </p>
           <div className="flex gap-6">
             <a
