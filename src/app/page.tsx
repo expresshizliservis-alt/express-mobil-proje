@@ -5,6 +5,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import Gallery from "@/components/Gallery"; // EKSİK OLAN SATIRI BURAYA EKLEDİM
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { getTranslation, Language } from "@/config/translations";
@@ -25,7 +26,7 @@ export default function Home() {
     }
   };
 
-    return (
+  return (
     <div
       className={currentLanguage === "ar" ? "rtl" : "ltr"}
       dir={currentLanguage === "ar" ? "rtl" : "ltr"}
