@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   Smartphone,
   Laptop,
@@ -58,16 +59,24 @@ export default function Services({ translations }: ServicesProps) {
               description={service.description}
               icon={iconMap[service.icon]}
               index={index}
+              // Her hizmet için özel WhatsApp mesajı oluşturan link
+              href={`https://wa.me/905539511770?text=Merhaba, ${encodeURIComponent(service.title)} hizmetiniz hakkında detaylı bilgi almak istiyorum.`}
             />
           ))}
         </div>
 
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
-          <button className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300">
+          {/* Çalışmayan Buton Link'e çevrildi */}
+          <Link 
+            href="https://wa.me/905539511770?text=Merhaba, Express mobil hizmetlerinizin tümü hakkında bilgi almak istiyorum."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
+          >
             Tüm Hizmetleri Görüntüle
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>
@@ -80,22 +89,15 @@ interface ServiceCardProps {
   description: string;
   icon: React.ReactNode;
   index: number;
+  href?: string;
 }
 
 function ServiceCard({
   title,
-import Link from "next/link"; // Sayfanın en üstüne bu importu eklemeyi unutma
-import { ArrowRight } from "lucide-react"; // İkonun importu sende zaten vardır
-
-// Props arayüzüne (varsa) href eklemen gerekebilir:
-// interface ServiceCardProps { title: string, description: string, icon: any, index: number, href?: string }
-
-export default function ServiceCard({
-  title, // title parametresi kodun içinde kullanılıyor, onu da ekledim
   description,
   icon,
   index,
-  href = "#" // Tıklanınca gidilecek adres için href parametresini ekledik
+  href = "#",
 }: ServiceCardProps) {
   return (
     <div
@@ -126,9 +128,11 @@ export default function ServiceCard({
           {description}
         </p>
 
-        {/* DÜZELTİLEN KISIM: <button> yerine <Link> kullanıyoruz */}
+        {/* DÜZELTİLEN KISIM: <button> yerine <Link> kullanıyoruz ve target="_blank" ekliyoruz */}
         <Link 
           href={href}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm hover:text-purple-600 transition-colors group-hover:gap-3"
         >
           Detaylı Bilgi
