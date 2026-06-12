@@ -84,13 +84,22 @@ interface ServiceCardProps {
 
 function ServiceCard({
   title,
+import Link from "next/link"; // Sayfanın en üstüne bu importu eklemeyi unutma
+import { ArrowRight } from "lucide-react"; // İkonun importu sende zaten vardır
+
+// Props arayüzüne (varsa) href eklemen gerekebilir:
+// interface ServiceCardProps { title: string, description: string, icon: any, index: number, href?: string }
+
+export default function ServiceCard({
+  title, // title parametresi kodun içinde kullanılıyor, onu da ekledim
   description,
   icon,
   index,
+  href = "#" // Tıklanınca gidilecek adres için href parametresini ekledik
 }: ServiceCardProps) {
   return (
     <div
-      className="group h-full"
+      className="group h-full relative"
       style={{
         animationDelay: `${index * 0.1}s`,
       }}
@@ -117,11 +126,14 @@ function ServiceCard({
           {description}
         </p>
 
-        {/* Learn More Link */}
-        <button className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm hover:text-purple-600 transition-colors group-hover:gap-3">
+        {/* DÜZELTİLEN KISIM: <button> yerine <Link> kullanıyoruz */}
+        <Link 
+          href={href}
+          className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm hover:text-purple-600 transition-colors group-hover:gap-3"
+        >
           Detaylı Bilgi
           <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all" />
-        </button>
+        </Link>
 
         {/* Bottom Border Animation */}
         <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-500" />
