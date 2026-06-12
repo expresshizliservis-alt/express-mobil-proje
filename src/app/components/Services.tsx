@@ -1,7 +1,6 @@
-// components/Services.tsx
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   Smartphone,
@@ -9,6 +8,7 @@ import {
   HardDrive,
   Wrench,
   ArrowRight,
+  ChevronDown
 } from "lucide-react";
 import { TranslationKey } from "@/config/translations";
 
@@ -17,7 +17,7 @@ interface ServicesProps {
 }
 
 export default function Services({ translations }: ServicesProps) {
-  // Icon mapping - dinamik olarak lucide ikonlarını seç
+  // Icon mapping
   const iconMap: { [key: string]: React.ReactNode } = {
     smartphone: <Smartphone className="w-8 h-8" />,
     laptop: <Laptop className="w-8 h-8" />,
@@ -52,22 +52,25 @@ export default function Services({ translations }: ServicesProps) {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {translations.services.items.map((service: { title: string; description: string; icon: string }, index: number) => (
+          {translations.services.items.map((service: any, index: number) => (
             <ServiceCard
               key={index}
               title={service.title}
               description={service.description}
               icon={iconMap[service.icon]}
               index={index}
-              // Her hizmet için özel WhatsApp mesajı oluşturan link
-              href={`https://wa.me/905539511770?text=Merhaba, ${encodeURIComponent(service.title)} hizmetiniz hakkında detaylı bilgi almak istiyorum.`}
+              // Eğer dil dosyasında 'details' yoksa varsayılan şu maddeler çıkacak:
+              details={service.details || [
+                "Ücretsiz ve hızlı arıza tespiti",
+                "Orijinal ve garantili parça kullanımı",
+                "Express mobil kalite güvencesi"
+              ]}
             />
           ))}
         </div>
 
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
-          {/* Çalışmayan Buton Link'e çevrildi */}
           <Link 
             href="https://wa.me/905539511770?text=Merhaba, Express mobil hizmetlerinizin tümü hakkında bilgi almak istiyorum."
             target="_blank"
@@ -89,7 +92,7 @@ interface ServiceCardProps {
   description: string;
   icon: React.ReactNode;
   index: number;
-  href?: string;
+  details?: string[];
 }
 
 function ServiceCard({
@@ -97,8 +100,11 @@ function ServiceCard({
   description,
   icon,
   index,
-  href = "#",
+  details = [],
 }: ServiceCardProps) {
+  // Kartın açık/kapalı durumunu tutan State
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div
       className="group h-full relative"
@@ -106,41 +112,54 @@ function ServiceCard({
         animationDelay: `${index * 0.1}s`,
       }}
     >
-      {/* Outer Gradient Border */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
 
-      {/* Card Container */}
-      <div className="relative h-full p-8 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:bg-white/80 hover:border-blue-200/60 overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 rounded-2xl" />
-
-        {/* Icon Container */}
-        <div className="mb-6 inline-flex p-4 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 text-blue-600 group-hover:from-blue-200 group-hover:to-purple-200 group-hover:text-blue-700 transition-all duration-300 shadow-md">
+      {/* Card Container - Arka planı beyaz ve okunaklı */}
+      <div className="relative h-full p-8 rounded-2xl bg-white backdrop-blur-xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col">
+        
+        <div className="mb-6 inline-flex p-4 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 text-blue-600 shadow-md">
           {icon}
         </div>
 
-        {/* Content */}
-        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-700 transition-colors">
+        <h3 className="text-xl font-bold text-gray-900 mb-3">
           {title}
         </h3>
 
-        <p className="text-gray-600 text-sm leading-relaxed mb-6">
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
           {description}
         </p>
 
-        {/* DÜZELTİLEN KISIM: <button> yerine <Link> kullanıyoruz ve target="_blank" ekliyoruz */}
-        <Link 
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm hover:text-purple-600 transition-colors group-hover:gap-3"
+        {/* Genişleyen Detay Listesi Alanı */}
+        <div 
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            isExpanded ? "max-h-64 opacity-100 mb-6" : "max-h-0 opacity-0 mb-0"
+          }`}
         >
-          Detaylı Bilgi
-          <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all" />
-        </Link>
+          <ul className="space-y-3 pt-4 border-t border-gray-100">
+            {details.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-700 font-medium">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        {/* Bottom Border Animation */}
-        <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-500" />
+        {/* Spacer - Butonu her zaman en alta iter */}
+        <div className="mt-auto pt-4">
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:text-purple-700 transition-colors"
+          >
+            {isExpanded ? "Daha Az Göster" : "Detaylı Bilgi"}
+            <ChevronDown 
+              className={`w-4 h-4 transition-transform duration-300 ${
+                isExpanded ? "rotate-180" : ""
+              }`} 
+            />
+          </button>
+        </div>
+
       </div>
     </div>
   );
