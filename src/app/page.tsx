@@ -25,7 +25,7 @@ export default function Home() {
     }
   };
 
-  return (
+    return (
     <div
       className={currentLanguage === "ar" ? "rtl" : "ltr"}
       dir={currentLanguage === "ar" ? "rtl" : "ltr"}
@@ -45,6 +45,9 @@ export default function Home() {
 
       {/* Services Section */}
       <Services translations={currentTranslations} />
+
+      {/* Galeri Bölümü */}
+      <Gallery />
 
       {/* Contact Section */}
       <Contact translations={currentTranslations} />
