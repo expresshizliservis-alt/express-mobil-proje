@@ -13,7 +13,7 @@ export default function Gallery() {
   const photos: GalleryItem[] = [
     {
       id: 1,
-      title: "Müşteri Cihazı Tamir Aşaması",
+      title: "Express Mobil Teknik Servis",
       category: "Bilgisayar Tamiri",
       imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/f_auto,q_auto/1000454471_v8abfe",
     },
