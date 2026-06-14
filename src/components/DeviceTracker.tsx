@@ -5,9 +5,9 @@ import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Search, ShieldCheck, Wrench, CheckCircle, AlertCircle } from "lucide-react";
 
-// Dışarıdaki dosya yollarına bağımlılığı bitirmek için istemciyi doğrudan burada oluşturuyoruz
-const supabaseUrl = "https://skjiufogtjtzybcxxcdf.supabase.co";
-const supabaseAnonKey = "sb_publishable_iqed66DzO1ZoZzuU9fCUBA_WprsWKKr";
+// Projedeki .env.local dosyasından tam ve eksiksiz anahtarları otomatik çeker
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default function DeviceTracker() {
@@ -25,7 +25,6 @@ export default function DeviceTracker() {
     setDeviceData(null);
 
     try {
-      // Supabase'den girilen ID'ye göre cihazı sorguluyoruz
       const { data, error: sbError } = await supabase
         .from("devices")
         .select("*")
