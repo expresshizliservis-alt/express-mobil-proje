@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { supabase } from "@/utils/supabase/client";
 import { Search, ShieldCheck, Wrench, CheckCircle, AlertCircle } from "lucide-react";
 
 export default function DeviceTracker() {
