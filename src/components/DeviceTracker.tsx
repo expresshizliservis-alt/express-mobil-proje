@@ -1,10 +1,14 @@
-
 // components/DeviceTracker.tsx
 "use client";
 
 import React, { useState } from "react";
-import { supabase } from "../utils/supabase/client";
+import { createClient } from "@supabase/supabase-js";
 import { Search, ShieldCheck, Wrench, CheckCircle, AlertCircle } from "lucide-react";
+
+// Bağlantıyı doğrudan dosya içinde kuruyoruz, böylece utils hatası tamamen çözülüyor
+const supabaseUrl = "https://skjiufogtjtzybcxxcdf.supabase.co";
+const supabaseAnonKey = "sb_publishable_iqed66DzO1ZoZzuU9fCUBA_WprsWKKr";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default function DeviceTracker() {
   const [trackId, setTrackId] = useState("");
@@ -21,7 +25,6 @@ export default function DeviceTracker() {
     setDeviceData(null);
 
     try {
-      // Supabase'den girilen ID'ye göre cihazı sorguluyoruz
       const { data, error: sbError } = await supabase
         .from("devices")
         .select("*")
@@ -66,7 +69,6 @@ export default function DeviceTracker() {
         </button>
       </form>
 
-      {/* Hata Mesajı */}
       {error && (
         <div className="p-4 rounded-xl bg-red-50 text-red-600 border border-red-100 flex items-center gap-2 text-sm">
           <AlertCircle className="w-5 h-5 flex-shrink-0" />
@@ -74,7 +76,6 @@ export default function DeviceTracker() {
         </div>
       )}
 
-      {/* Sonuç Ekranı */}
       {deviceData && (
         <div className="p-6 rounded-xl bg-slate-50 border border-slate-100 space-y-4 animate-in fade-in duration-300">
           <div className="flex justify-between items-center border-b border-gray-200/60 pb-3">
@@ -98,7 +99,6 @@ export default function DeviceTracker() {
             }`}>
               {deviceData.repair_status === "Tamir Edildi" && <CheckCircle className="w-3.5 h-3.5" />}
               {deviceData.repair_status === "Beklemede" && <AlertCircle className="w-3.5 h-3.5" />}
-              {deviceData.repair_status !== "Tamir Edildi" && deviceData.repair_status !== "Beklemede" && <Wrench className="w-3.5 h-3.5" />}
               {deviceData.repair_status}
             </span>
           </div>
