@@ -1,6 +1,7 @@
 // app/page.tsx
 "use client";
 
+import DeviceTracker from "@/components/DeviceTracker";
 import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -46,7 +47,9 @@ export default function Home() {
 
       {/* Services Section */}
       <Services translations={currentTranslations} />
-
+<div className="py-12 bg-slate-50">
+  <DeviceTracker />
+</div>
       {/* Galeri Bölümü */}
       <Gallery />
 
