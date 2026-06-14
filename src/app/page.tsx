@@ -1,107 +1,60 @@
-// components/DeviceTracker.tsx
+// app/page.tsx
 "use client";
 
-import React, { useState } from "react";
-import { Search, ShieldCheck, Wrench, CheckCircle, AlertCircle } from "lucide-react";
+import { useState } from "react";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
+import Gallery from "@/components/Gallery"; // EKSİK OLAN SATIRI BURAYA EKLEDİM
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import { getTranslation, Language } from "@/config/translations";
 
-export default function DeviceTracker() {
-  const [trackId, setTrackId] = useState("");
-  const [deviceData, setDeviceData] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+export default function Home() {
+  const [currentLanguage, setCurrentLanguage] = useState<Language>("tr");
 
-  const handleTrack = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!trackId.trim()) return;
+  const currentTranslations = getTranslation(currentLanguage);
 
-    setLoading(true);
-    setError("");
-    setDeviceData(null);
+  const handleLanguageChange = (lang: Language) => {
+    setCurrentLanguage(lang);
+  };
 
-    try {
-      // Supabase'den girilen ID'ye göre cihazı sorguluyoruz
-      const { data, error: sbError } = await supabase
-        .from("devices")
-        .select("*")
-        .eq("id", trackId.trim())
-        .single();
-
-      if (sbError) {
-        setError("Cihaz bulunamadı. Lütfen takip numarasını doğru girdiğinizden emin olun.");
-      } else {
-        setDeviceData(data);
-      }
-    } catch (err) {
-      setError("Sorgulama sırasında bir hata oluştu.");
-    } finally {
-      setLoading(false);
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow-xl border border-gray-100 text-gray-800">
-      <h3 className="text-xl font-bold mb-2 flex items-center gap-2 text-slate-900">
-        🔍 Cihaz Durumu Sorgulama
-      </h3>
-      <p className="text-sm text-gray-500 mb-6">
-        Express mobil servisine bıraktığınız cihazınızın durumunu öğrenmek için size verilen takip numarasını (UUID) giriniz.
-      </p>
+    <div
+      className={currentLanguage === "ar" ? "rtl" : "ltr"}
+      dir={currentLanguage === "ar" ? "rtl" : "ltr"}
+    >
+      {/* Header */}
+      <Header
+        translations={currentTranslations}
+        currentLanguage={currentLanguage}
+        onLanguageChange={handleLanguageChange}
+      />
 
-      <form onSubmit={handleTrack} className="flex gap-2 mb-6">
-        <input
-          type="text"
-          placeholder="Takip numarasını yapıştırın..."
-          value={trackId}
-          onChange={(e) => setTrackId(e.target.value)}
-          className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-blue-500 transition-colors text-sm"
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 disabled:opacity-50 text-sm flex items-center gap-2"
-        >
-          {loading ? "Sorgulanıyor..." : "Sorgula"}
-        </button>
-      </form>
+      {/* Hero Section */}
+      <Hero
+        translations={currentTranslations}
+        onContactClick={scrollToContact}
+      />
 
-      {/* Hata Mesajı */}
-      {error && (
-        <div className="p-4 rounded-xl bg-red-50 text-red-600 border border-red-100 flex items-center gap-2 text-sm">
-          <AlertCircle className="w-5 h-5 flex-shrink-0" />
-          <span>{error}</span>
-        </div>
-      )}
+      {/* Services Section */}
+      <Services translations={currentTranslations} />
 
-      {/* Sonuç Ekranı */}
-      {deviceData && (
-        <div className="p-6 rounded-xl bg-slate-50 border border-slate-100 space-y-4 animate-in fade-in duration-300">
-          <div className="flex justify-between items-center border-b border-gray-200/60 pb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Müşteri</span>
-            <span className="font-semibold text-slate-900">{deviceData.customer_name}</span>
-          </div>
+      {/* Galeri Bölümü */}
+      <Gallery />
 
-          <div className="flex justify-between items-center border-b border-gray-200/60 pb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Cihaz Modeli</span>
-            <span className="font-semibold text-slate-900">{deviceData.device_model}</span>
-          </div>
+      {/* Contact Section */}
+      <Contact translations={currentTranslations} />
 
-          <div className="flex justify-between items-center pt-1">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Mevcut Durum</span>
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${
-              deviceData.repair_status === "Tamir Edildi" 
-                ? "bg-green-100 text-green-700" 
-                : deviceData.repair_status === "Beklemede"
-                ? "bg-amber-100 text-amber-700"
-                : "bg-blue-100 text-blue-700"
-            }`}>
-              {deviceData.repair_status === "Tamir Edildi" && <CheckCircle className="w-3.5 h-3.5" />}
-              {deviceData.repair_status === "Beklemede" && <AlertCircle className="w-3.5 h-3.5" />}
-              {deviceData.repair_status !== "Tamir Edildi" && deviceData.repair_status !== "Beklemede" && <Wrench className="w-3.5 h-3.5" />}
-              {deviceData.repair_status}
-            </span>
-          </div>
-        </div>
-      )}
+      {/* Footer */}
+      <Footer translations={currentTranslations} />
     </div>
   );
 }
