@@ -56,6 +56,8 @@ export default function Home() {
 
       {/* Footer */}
       <Footer translations={currentTranslations} />
+   <FixRobot />
+
     </div>
   );
 }
