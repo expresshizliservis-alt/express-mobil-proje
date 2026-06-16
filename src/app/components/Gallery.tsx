@@ -17,7 +17,7 @@ export default function Gallery() {
       id: 1,
       title: "Express Mobil Kurumsal Logomuz",
       category: "Kurumsal",
-      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/f_auto,q_auto/1000454471_v8abfe",
+      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/v1781638465/Ekran_g%C3%B6r%C3%BCnt%C3%BCs%C3%BC_2024-08-24_233400_jul4qz.png",
       type: "image",
     },
     {
