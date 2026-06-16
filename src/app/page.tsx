@@ -9,6 +9,7 @@ import Gallery from "@/components/Gallery"; // EKSİK OLAN SATIRI BURAYA EKLEDİ
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { getTranslation, Language } from "@/config/translations";
+import FixRobot from '../FixRobot';
 
 export default function Home() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>("tr");
