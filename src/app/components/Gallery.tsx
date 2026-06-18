@@ -32,7 +32,7 @@ export default function Gallery() {
       id: 3,
       title: "Ekran Değişimi ve Test Süreci",
       category: "Telefon Tamiri",
-      imageUrl: "https://collection.cloudinary.com/dtsotmmun/2a0a2d11881ea0ae2bec7c325ef9c2bc", 
+      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/v1781802111/pexels-lichtblick800-32260298_taypnw.jpg", 
       type: "image",
     }
   ];
