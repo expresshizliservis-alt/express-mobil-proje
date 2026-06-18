@@ -25,7 +25,7 @@ export default function Gallery() {
       title: "Teknik Servis Canlı Tamir Aşaması", // Videonun altındaki yazı
       category: "Canlı Tamir / Video", // Üstteki küçük mavi etiket
       // İŞTE SENİN CLOUDINARY VİDEO LİNKİN BURASI:
-      videoUrl: "https://res.cloudinary.com/dtsotmmun/video/upload/f_auto,q_auto/VID_20260612_002844_863_jgktb3.mp4", 
+      videoUrl: "https://collection.cloudinary.com/dtsotmmun/59738b8fc7a66438ed73308cacec7844", 
       type: "video",
     },
     {
