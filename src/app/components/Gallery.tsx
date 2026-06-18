@@ -26,7 +26,7 @@ export default function Gallery() {
       category: "Canlı Tamir / Video", // Üstteki küçük mavi etiket
       // İŞTE SENİN CLOUDINARY VİDEO LİNKİN BURASI:
       videoUrl: "https://collection.cloudinary.com/dtsotmmun/59738b8fc7a66438ed73308cacec7844", 
-      type: "video",
+      type: "image",
     },
     {
       id: 3,
