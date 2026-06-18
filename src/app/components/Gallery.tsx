@@ -25,14 +25,14 @@ export default function Gallery() {
       title: "Teknik Servis Canlı Tamir Aşaması", // Videonun altındaki yazı
       category: "Canlı Tamir / Video", // Üstteki küçük mavi etiket
       // İŞTE SENİN CLOUDINARY VİDEO LİNKİN BURASI:
-      videoUrl: "https://collection.cloudinary.com/dtsotmmun/59738b8fc7a66438ed73308cacec7844", 
-      type: "image",
+      videoUrl: "https://res.cloudinary.com/dtsotmmun/video/upload/f_auto,q_auto/VID_20260612_002844_863_jgktb3.mp4", 
+      type: "video",
     },
     {
       id: 3,
       title: "Ekran Değişimi ve Test Süreci",
       category: "Telefon Tamiri",
-      imageUrl: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&q=80&w=600", 
+      imageUrl: "https://collection.cloudinary.com/dtsotmmun/59738b8fc7a66438ed73308cacec7844", 
       type: "image",
     }
   ];
