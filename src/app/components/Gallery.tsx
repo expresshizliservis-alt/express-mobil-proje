@@ -17,7 +17,7 @@ export default function Gallery() {
       id: 1,
       title: "Express Mobil Kurumsal Logomuz",
       category: "Kurumsal",
-      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/f_auto,q_auto/1000454471_v8abfe",
+      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/q_auto/f_auto/v1781802954/pexels-tima-miroshnichenko-6755063_uu4bnb.jpg",
       type: "image",
     },
     {
@@ -32,7 +32,7 @@ export default function Gallery() {
       id: 3,
       title: "Ekran Değişimi ve Test Süreci",
       category: "Telefon Tamiri",
-      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/v1781802111/pexels-lichtblick800-32260298_taypnw.jpg", 
+      imageUrl: "https://res.cloudinary.com/dtsotmmun/image/upload/q_auto/f_auto/v1781802954/pexels-tima-miroshnichenko-6755075_cfodyy.jpg", 
       type: "image",
     }
   ];
